@@ -25,9 +25,7 @@
       transition: transform 0.3s ease;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+    .card:hover { transform: translateY(-5px); }
 
     img {
       width: 140px;
@@ -38,27 +36,14 @@
       margin-bottom: 20px;
     }
 
-    h1 {
-      font-size: 26px;
-      margin: 10px 0;
-      color: #0b7285;
-    }
+    h1 { font-size: 26px; margin: 10px 0; color: #0b7285; }
+    h2 { font-size: 18px; color: #555; margin-bottom: 20px; }
+    p { font-size: 15px; color: #777; line-height: 1.5; }
 
-    h2 {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 15px;
-      color: #777;
-      line-height: 1.5;
-    }
-
-    button {
+    .btn {
+      display: inline-block;
       padding: 12px 25px;
-      margin-top: 20px;
+      margin: 8px 5px 0 5px;
       cursor: pointer;
       border: none;
       border-radius: 10px;
@@ -66,10 +51,11 @@
       color: #fff;
       font-size: 16px;
       font-weight: 600;
+      text-decoration: none;
       transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    button:hover {
+    .btn:hover {
       background: #095b65;
       transform: translateY(-2px);
     }
@@ -81,7 +67,11 @@
     <h1 id="name">Soorya Ganesh B Pillai</h1>
     <h2 id="education">B.Tech CSE (AI/ML), Christ University</h2>
     <p id="bio">Short bio goes here...</p>
-    <a href="admin.html"><button>Edit Profile</button></a>
+
+    <!-- Navigation Buttons -->
+    <a class="btn" href="projects.html">Projects</a>
+    <a class="btn" href="contact.html">Contact Me</a>
+    <a class="btn" href="admin.html">Edit Profile</a>
   </div>
 
   <script>
