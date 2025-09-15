@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    input { padding: 10px; margin: 10px; }
+    button { padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h2>Admin Login</h2>
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="checkPassword()">Login</button>
+  <p id="error" style="color:red;"></p>
+
+  <script>
+    function checkPassword() {
+      const pwd = document.getElementById("password").value;
+      const correctPwd = "soorya123"; // change this
+      if (pwd === correctPwd) {
+        window.location.href = "edit.html";
+      } else {
+        document.getElementById("error").innerText = "Incorrect password!";
+      }
+    }
+  </script>
+</body>
+</html>

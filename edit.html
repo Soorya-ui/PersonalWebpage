@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 50px; }
+    input, textarea { display:block; margin: 10px 0; padding:10px; width:300px; }
+    button { padding:10px 20px; }
+  </style>
+</head>
+<body>
+  <h2>Edit Profile</h2>
+  <label>Name:</label>
+  <input type="text" id="name" placeholder="Your name">
+
+  <label>Education:</label>
+  <input type="text" id="education" placeholder="Your education">
+
+  <label>Bio:</label>
+  <textarea id="bio" placeholder="Your bio"></textarea>
+
+  <button onclick="save()">Save</button>
+
+  <script>
+    function save() {
+      const name = document.getElementById("name").value;
+      const education = document.getElementById("education").value;
+      const bio = document.getElementById("bio").value;
+      localStorage.setItem("name", name);
+      localStorage.setItem("education", education);
+      localStorage.setItem("bio", bio);
+      alert("Details saved! (Only on this browser)");
+    }
+  </script>
+</body>
+</html>
