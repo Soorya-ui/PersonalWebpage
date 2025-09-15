@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Personal Profile — SOORYA GANESH B PILLAI</title>
+  <style>
+    :root{
+      --bg:#f7f8fb; --card:#ffffff; --muted:#6b7280; --accent:#0b7285;
+      --glass: rgba(255,255,255,0.7);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#eef2f7, #ffffff); color:#0f172a;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding:24px; display:flex; justify-content:center;
+    }
+    .wrap{width:100%; max-width:980px}
+    header{display:flex; gap:16px; align-items:center; margin-bottom:18px}
+    .avatar{width:96px; height:96px; border-radius:14px; overflow:hidden; box-shadow:0 6px 18px rgba(12,20,30,0.08)}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    h1{font-size:20px;margin:0}
+    .tagline{color:var(--muted);font-size:13px}
+
+    .grid{display:grid;grid-template-columns:1fr 320px; gap:18px}
+    .card{background:var(--card); padding:18px;border-radius:12px; box-shadow:0 8px 30px rgba(16,24,40,0.06)}
+
+    .section h2{font-size:15px;margin:0 0 10px}
+    .field{display:flex; gap:10px; align-items:center; margin-bottom:10px}
+    .field label{width:120px;color:var(--muted); font-size:13px}
+    .field .value{flex:1}
+    .value input, .value textarea, .value select{width:100%; padding:8px 10px; border-radius:8px; border:1px solid #e6e9ef; font-size:14px}
+    textarea{min-height:80px; resize:vertical}
+
+    .actions{display:flex; gap:8px; margin-top:12px}
+    button{border:0; padding:8px 12px; border-radius:8px; cursor:pointer}
+    .btn-primary{background:var(--accent); color:#fff}
+    .btn-ghost{background:transparent; border:1px solid #e6e9ef}
+
+    .right-col{display:flex; flex-direction:column; gap:12px}
+    .stats{display:flex; gap:8px}
+    .stat{flex:1; padding:12px; border-radius:10px; background:var(--glass); backdrop-filter: blur(6px); text-align:center}
+    .stat b{display:block; font-size:18px}
+
+    .preview h3{margin:0 0 8px}
+    .preview p{margin:0;color:var(--muted)}
+
+    .controls{display:flex; gap:8px; align-items:center}
+    .small{font-size:13px; color:var(--muted)}
+
+    footer{margin-top:16px; text-align:center; color:var(--muted); font-size:13px}
+
+    /* responsive */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .right-col{order:2}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="avatar" aria-hidden>
+        <img id="avatarImg" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%' height='100%' fill='%23e6eef2'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='48' fill='%238aa0a7'>SG</text></svg>" alt="Profile photo">
+      </div>
+      <div>
+        <h1 id="displayName">SOORYA GANESH B PILLAI</h1>
+        <div class="tagline" id="displayTitle">B.Tech CSE (AI/ML) — Student</div>
+        <div class="small" style="margin-top:6px">Interactive profile with editable fields — saves to browser storage.</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px">
+        <div class="controls small">
+          <label for="themeToggle">Theme</label>
+          <select id="themeToggle" aria-label="Theme selector">
+            <option value="default">Default</option>
+            <option value="compact">Compact</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card section">
+        <h2>Personal Details (editable)</h2>
+        <div class="field">
+          <label for="name">Full name</label>
+          <div class="value"><input id="name" placeholder="Full name"></div>
+        </div>
+        <div class="field">
+          <label for="title">Title</label>
+          <div class="value"><input id="title" placeholder="e.g. B.Tech CSE — AI/ML Student"></div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <div class="value"><input id="email" type="email" placeholder="you@example.com"></div>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <div class="value"><input id="phone" placeholder="+91 9XXXXXXXXX"></div>
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <div class="value"><input id="location" placeholder="City, Country"></div>
+        </div>
+        <div class="field">
+          <label for="about">About</label>
+          <div class="value"><textarea id="about" placeholder="Short bio or summary"></textarea></div>
+        </div>
+
+        <h2 style="margin-top:10px">Education & Skills</h2>
+        <div class="field">
+          <label for="education">Education</label>
+          <div class="value"><input id="education" placeholder="e.g. B.Tech — Christ University"></div>
+        </div>
+        <div class="field">
+          <label for="skills">Skills</label>
+          <div class="value"><input id="skills" placeholder="Comma-separated skills e.g. Python, ML, HTML"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" id="saveBtn">Save (Local)</button>
+          <button class="btn-ghost" id="resetBtn">Reset</button>
+          <button class="btn-ghost" id="printBtn">Print</button>
+        </div>
+
+        <hr style="margin:14px 0">
+
+        <h2>Profile Photo</h2>
+        <div class="field">
+          <label for="photoUpload">Upload</label>
+          <div class="value">
+            <input id="photoUpload" type="file" accept="image/*">
+            <div class="small" style="margin-top:6px">Image is previewed locally and stored in localStorage (base64).</div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:10px">Contact Links</h2>
+        <div class="field">
+          <label for="github">GitHub</label>
+          <div class="value"><input id="github" placeholder="https://github.com/username"></div>
+        </div>
+        <div class="field">
+          <label for="linkedin">LinkedIn</label>
+          <div class="value"><input id="linkedin" placeholder="https://linkedin.com/in/username"></div>
+        </div>
+      </section>
+
+      <aside class="right-col">
+        <div class="card preview" aria-live="polite">
+          <h3>Live preview</h3>
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:64px;height:64px;border-radius:10px;overflow:hidden"><img id="previewAvatar" src="" alt=""></div>
+            <div>
+              <strong id="pvName">SOORYA GANESH</strong>
+              <div id="pvTitle" class="small">Student</div>
+            </div>
+          </div>
+          <div style="margin-top:10px">
+            <p id="pvAbout" class="small">Short bio appears here...</p>
+            <p class="small" id="pvContact"></p>
+          </div>
+        </div>
+
+        <div class="card stats" aria-hidden>
+          <div class="stat"><span class="small">Projects</span><b id="statProjects">6</b></div>
+          <div class="stat"><span class="small">Experience</span><b id="statExp">1 yr</b></div>
+          <div class="stat"><span class="small">Skills</span><b id="statSkills">5</b></div>
+        </div>
+
+        <div class="card">
+          <h3>Utilities</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button id="togglePreview" class="btn-ghost">Hide preview</button>
+            <button id="exportJson" class="btn-ghost">Export JSON</button>
+            <button id="clearStorage" class="btn-ghost">Clear saved</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      Tip: Edit fields and press "Save" — data persists in this browser (LocalStorage).
+    </footer>
+  </div>
+
+  <script>
+    // Simple intermediate JS to wire up the form, preview and local storage
+    const fields = ['name','title','email','phone','location','about','education','skills','github','linkedin'];
+    const els = {};
+    fields.forEach(f => els[f] = document.getElementById(f));
+
+    const avatarImg = document.getElementById('avatarImg');
+    const previewAvatar = document.getElementById('previewAvatar');
+    const pvName = document.getElementById('pvName');
+    const pvTitle = document.getElementById('pvTitle');
+    const pvAbout = document.getElementById('pvAbout');
+    const pvContact = document.getElementById('pvContact');
+
+    const saveBtn = document.getElementById('saveBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const printBtn = document.getElementById('printBtn');
+    const photoUpload = document.getElementById('photoUpload');
+    const previewName = document.getElementById('displayName');
+    const previewTitle = document.getElementById('displayTitle');
+
+    const togglePreviewBtn = document.getElementById('togglePreview');
+    const exportJsonBtn = document.getElementById('exportJson');
+    const clearStorageBtn = document.getElementById('clearStorage');
+    const themeToggle = document.getElementById('themeToggle');
+
+    // load from storage or initialize defaults
+    function load(){
+      const raw = localStorage.getItem('profile_data');
+      let data = raw ? JSON.parse(raw) : {
+        name: 'SOORYA GANESH B PILLAI',
+        title: 'B.Tech CSE (AI/ML) — Student',
+        email:'', phone:'', location:'', about:'', education:'', skills:'', github:'', linkedin:'', avatar:''
+      };
+      fields.forEach(f => { els[f].value = data[f] || ''; });
+      if(data.avatar) { avatarImg.src = data.avatar; previewAvatar.src = data.avatar; }
+      updatePreview();
+    }
+
+    function collect(){
+      const data = {};
+      fields.forEach(f => data[f] = els[f].value.trim());
+      data.avatar = avatarImg.src || '';
+      return data;
+    }
+
+    function save(){
+      const data = collect();
+      localStorage.setItem('profile_data', JSON.stringify(data));
+      showToast('Saved to LocalStorage');
+      updatePreview();
+    }
+
+    function resetToDefaults(){
+      localStorage.removeItem('profile_data');
+      load();
+      showToast('Reset to defaults');
+    }
+
+    function updatePreview(){
+      const d = collect();
+      pvName.textContent = d.name || 'Your name';
+      pvTitle.textContent = d.title || 'Title';
+      pvAbout.textContent = d.about || 'Short bio appears here...';
+      const contacts = [d.email ? `✉ ${d.email}` : '', d.phone ? `☎ ${d.phone}` : '', d.location ? `📍 ${d.location}` : ''].filter(Boolean).join(' • ');
+      pvContact.textContent = contacts;
+      previewName.textContent = d.name || 'Your name';
+      previewTitle.textContent = d.title || 'Title';
+      // skills count -> update stat
+      const skillsCount = d.skills ? d.skills.split(',').map(s=>s.trim()).filter(Boolean).length : 0;
+      document.getElementById('statSkills').textContent = skillsCount || '0';
+    }
+
+    // file input -> preview avatar as dataURL
+    photoUpload.addEventListener('change', e => {
+      const f = e.target.files && e.target.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        avatarImg.src = ev.target.result;
+        previewAvatar.src = ev.target.result;
+      };
+      reader.readAsDataURL(f);
+    });
+
+    // wire up events
+    saveBtn.addEventListener('click', save);
+    resetBtn.addEventListener('click', resetToDefaults);
+    printBtn.addEventListener('click', () => window.print());
+
+    fields.forEach(f => els[f].addEventListener('input', updatePreview));
+
+    togglePreviewBtn.addEventListener('click', () => {
+      const preview = document.querySelector('.preview');
+      if(preview.style.display === 'none'){
+        preview.style.display = '';
+        togglePreviewBtn.textContent = 'Hide preview';
+      } else {
+        preview.style.display = 'none';
+        togglePreviewBtn.textContent = 'Show preview';
+      }
+    });
+
+    exportJsonBtn.addEventListener('click', () => {
+      const data = collect();
+      const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = (data.name || 'profile') + '.json';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    clearStorageBtn.addEventListener('click', () => { localStorage.removeItem('profile_data'); showToast('Cleared saved data'); load(); });
+
+    // toast
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg; t.style.position='fixed'; t.style.right='18px'; t.style.bottom='18px';
+      t.style.padding='10px 12px'; t.style.background='rgba(0,0,0,0.75)'; t.style.color='#fff'; t.style.borderRadius='8px';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.style.transition='opacity 300ms'; t.style.opacity='0'; setTimeout(()=>t.remove(),300); },1400);
+    }
+
+    // theme switcher (small example altering layout density)
+    themeToggle.addEventListener('change', e => {
+      if(e.target.value === 'compact'){
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.body.style.fontSize = '14px';
+      } else {
+        document.body.style.fontSize = '';
+      }
+    });
+
+    // basic validation example: save only if name exists
+    function safeSave(){
+      if(!els.name.value.trim()){ alert('Please enter your full name before saving.'); return; }
+      save();
+    }
+    saveBtn.removeEventListener('click', save);
+    saveBtn.addEventListener('click', safeSave);
+
+    // init
+    load();
+
+  </script>
+</body>
+</html>
