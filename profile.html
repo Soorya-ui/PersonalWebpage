@@ -8,7 +8,6 @@
     .form-section { background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:320px; }
     input, textarea { width:100%; margin:6px 0 12px; padding:10px; border:1px solid #ccc; border-radius:8px; }
     button { padding:10px 14px; border:none; border-radius:8px; background:#0b7285; color:white; cursor:pointer; }
-    .card { width:300px; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); padding:20px; text-align:center; }
     img { width:100px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:12px; }
   </style>
 </head>
@@ -20,76 +19,70 @@
       <input type="text" id="name" placeholder="Your Name" required>
       <input type="text" id="education" placeholder="Your Education" required>
       <textarea id="bio" placeholder="Your bio..." rows="4"></textarea>
-      <button type="submit">Save</button>
+      <button type="submit">Save & Go Home</button>
     </form>
   </div>
 
   <div class="card" id="previewCard">
-    <img id="previewPhoto" src="" alt="Profile Photo">
+    <img id="previewPhoto" src="https://via.placeholder.com/100" alt="Profile Photo">
     <h2 id="previewName">Your Name</h2>
     <p id="previewEducation">Your Education</p>
     <p id="previewBio">Your bio will appear here.</p>
   </div>
 
-<script>
-  const form = document.getElementById("profileForm");
-  const photoUpload = document.getElementById("photoUpload");
-  const nameInput = document.getElementById("name");
-  const educationInput = document.getElementById("education");
-  const bioInput = document.getElementById("bio");
-  const previewPhoto = document.getElementById("previewPhoto");
-  const previewName = document.getElementById("previewName");
-  const previewEducation = document.getElementById("previewEducation");
-  const previewBio = document.getElementById("previewBio");
+  <script>
+    const form = document.getElementById("profileForm");
+    const photoUpload = document.getElementById("photoUpload");
+    const nameInput = document.getElementById("name");
+    const educationInput = document.getElementById("education");
+    const bioInput = document.getElementById("bio");
+    const previewPhoto = document.getElementById("previewPhoto");
+    const previewName = document.getElementById("previewName");
+    const previewEducation = document.getElementById("previewEducation");
+    const previewBio = document.getElementById("previewBio");
 
-  // Load saved data
-  window.onload = () => {
-    if(localStorage.getItem("name")) {
-      nameInput.value = localStorage.getItem("name");
-      previewName.textContent = localStorage.getItem("name");
-    }
-    if(localStorage.getItem("education")) {
-      educationInput.value = localStorage.getItem("education");
-      previewEducation.textContent = localStorage.getItem("education");
-    }
-    if(localStorage.getItem("bio")) {
-      bioInput.value = localStorage.getItem("bio");
-      previewBio.textContent = localStorage.getItem("bio");
-    }
-    if(localStorage.getItem("photo")) {
-      previewPhoto.src = localStorage.getItem("photo");
-    } else {
-      previewPhoto.src = "https://via.placeholder.com/100"; // default
-    }
-  };
+    // Load saved data
+    window.onload = () => {
+      if(localStorage.getItem("name")) {
+        nameInput.value = localStorage.getItem("name");
+        previewName.textContent = localStorage.getItem("name");
+      }
+      if(localStorage.getItem("education")) {
+        educationInput.value = localStorage.getItem("education");
+        previewEducation.textContent = localStorage.getItem("education");
+      }
+      if(localStorage.getItem("bio")) {
+        bioInput.value = localStorage.getItem("bio");
+        previewBio.textContent = localStorage.getItem("bio");
+      }
+      if(localStorage.getItem("photo")) {
+        previewPhoto.src = localStorage.getItem("photo");
+      }
+    };
 
-  // Update preview when a new photo is selected
-  photoUpload.addEventListener("change", () => {
-    const file = photoUpload.files[0];
-    if(file){
-      const reader = new FileReader();
-      reader.onload = () => {
-        previewPhoto.src = reader.result;
-        localStorage.setItem("photo", reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  });
+    // Update photo preview and save
+    photoUpload.addEventListener("change", () => {
+      const file = photoUpload.files[0];
+      if(file){
+        const reader = new FileReader();
+        reader.onload = () => {
+          previewPhoto.src = reader.result;
+          localStorage.setItem("photo", reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
-  // Save form data and redirect to index.html
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    localStorage.setItem("name", nameInput.value);
-    localStorage.setItem("education", educationInput.value);
-    localStorage.setItem("bio", bioInput.value);
+    // Save form data and redirect
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      localStorage.setItem("name", nameInput.value);
+      localStorage.setItem("education", educationInput.value);
+      localStorage.setItem("bio", bioInput.value);
 
-    previewName.textContent = nameInput.value;
-    previewEducation.textContent = educationInput.value;
-    previewBio.textContent = bioInput.value;
-
-    // Redirect to home page
-    window.location.href = "index.html";
-  });
-</script>
+      // Redirect to home page
+      window.location.href = "index.html";
+    });
+  </script>
 </body>
 </html>
