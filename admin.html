@@ -1,28 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>Admin Login</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-    input { padding: 10px; margin: 10px; }
-    button { padding: 10px 20px; }
+    body { font-family: Arial,sans-serif; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; background:#eef2f7; }
+    input, button { padding:10px; margin:8px; border-radius:6px; border:1px solid #ccc; font-size:14px; }
+    button { background:#0b7285; color:#fff; cursor:pointer; border:none; }
+    .error{color:red;font-size:13px;}
   </style>
 </head>
 <body>
-  <h2>Admin Login</h2>
+  <h2>Admin Access</h2>
   <input type="password" id="password" placeholder="Enter password">
-  <button onclick="checkPassword()">Login</button>
-  <p id="error" style="color:red;"></p>
+  <button onclick="checkPwd()">Login</button>
+  <p class="error" id="err"></p>
 
   <script>
-    function checkPassword() {
-      const pwd = document.getElementById("password").value;
-      const correctPwd = "soorya123"; // change this
-      if (pwd === correctPwd) {
-        window.location.href = "edit.html";
+    function checkPwd(){
+      const correct = "soorya123"; // change password here
+      const val = document.getElementById("password").value;
+      if(val === correct){
+        window.location.href = "profile.html"; // goes to editable page
       } else {
-        document.getElementById("error").innerText = "Incorrect password!";
+        document.getElementById("err").textContent = "❌ Incorrect password!";
       }
     }
   </script>
