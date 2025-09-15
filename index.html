@@ -7,14 +7,30 @@
     body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background:#f4f7fb; }
     button { padding: 10px 20px; margin-top: 20px; cursor: pointer; border:none; border-radius:6px; background:#0b7285; color:#fff; font-size:16px; }
     .card { background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); display:inline-block; }
+    img { width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:12px; }
   </style>
 </head>
 <body>
   <div class="card">
+    <img id="profilePhoto" src="https://via.placeholder.com/120" alt="Profile Photo">
     <h1 id="name">Soorya Ganesh B Pillai</h1>
     <h2 id="education">B.Tech CSE (AI/ML), Christ University</h2>
     <p id="bio">Short bio goes here...</p>
     <a href="admin.html"><button>Edit Profile</button></a>
   </div>
+
+  <script>
+    window.onload = () => {
+      const savedName = localStorage.getItem("name");
+      const savedEducation = localStorage.getItem("education");
+      const savedBio = localStorage.getItem("bio");
+      const savedPhoto = localStorage.getItem("photo");
+
+      if(savedName) document.getElementById("name").textContent = savedName;
+      if(savedEducation) document.getElementById("education").textContent = savedEducation;
+      if(savedBio) document.getElementById("bio").textContent = savedBio;
+      if(savedPhoto) document.getElementById("profilePhoto").src = savedPhoto;
+    };
+  </script>
 </body>
 </html>
